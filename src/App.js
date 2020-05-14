@@ -10,6 +10,7 @@ import Navigation from "./components/Navigation";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import Meetings from "./components/Meetings";
+import Checkin from "./components/Checkin";
 
 class App extends React.Component {
   constructor() {
@@ -128,6 +129,9 @@ class App extends React.Component {
             addMeeting={this.addMeeting}
             meetings={this.state.meetings}
             userId={this.state.userId}
+          />
+          <Checkin
+            path="/checkin/:userId/:meetingId"
           />
           <Register path="/register" registerUser={this.registerUser} />
         </Router>

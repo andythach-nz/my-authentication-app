@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import { Link } from "@reach/router";
+import { Link, navigate } from "@reach/router";
 import { GoTrashcan } from "react-icons/go";
+import { FaLink } from "react-icons/fa";
 import firebase from "../Firebase";
 
 class MeetingList extends React.Component {
@@ -42,6 +43,15 @@ class MeetingList extends React.Component {
               onClick={(e) => this.deleteMeeting(e, item.meetingId)}
             >
               <GoTrashcan />
+            </button>
+            <button
+              className="btn btn-sm btn-outline-secondary"
+              title="Check In"
+              onClick={() =>
+                navigate(`/checkin/${this.props.userId}/${item.meetingId}`)
+              }
+            >
+              <FaLink />
             </button>
           </section>
           <section className="pl-3 text-left align-self-center">
