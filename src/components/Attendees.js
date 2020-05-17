@@ -1,17 +1,19 @@
 import React, { Component } from "react";
 import firebase from "../Firebase";
 import AttendeesList from "./AttendeesList";
-import { FaUndo } from "react-icons/fa";
+import { FaUndo, FaRandom } from "react-icons/fa";
 
 class Attendees extends Component {
   constructor(props) {
     super(props);
     this.state = {
       searchQuery: "",
+      allAttendees: [],
       displayAttendees: [],
     };
 
     this.handleChange = this.handleChange.bind(this);
+    this.resetQuery = this.resetQuery.bind(this);
   }
 
   componentDidMount() {
@@ -31,6 +33,7 @@ class Attendees extends Component {
         });
       }
       this.setState({
+        allAttendees: attendeesList,
         displayAttendees: attendeesList,
       });
     });
@@ -43,6 +46,21 @@ class Attendees extends Component {
     console.log("itemName", itemName);
     console.log("itemValue", itemValue.toLowerCase());
     this.setState({ [itemName]: [itemValue] });
+  }
+
+  //reset search query
+  resetQuery() {
+    this.setState({displayAttendees:this.state.allAttendees,searchQuery:""});
+  }
+
+  //pick random attendees
+  pickRandom() {
+    const randomAttendee = Math.floor(Math.random()*this.state.allAttendees.length);
+    console.log(randomAttendee)
+    this.resetQuery();
+    this.setState({
+      displayAttendees: [this.state.allAttendees[randomAttendee]]
+    })
   }
 
   render() {
@@ -69,7 +87,12 @@ class Attendees extends Component {
                   onChange={this.handleChange}
                 ></input>
                 <div className="input-group-append">
-                  
+                  <button className="btn btn-sm btn-outline-info" title="Reset Search" onClick={() => this.resetQuery()}>
+                    <FaUndo />
+                  </button>
+                  <button className="btn btn-sm btn-outline-info" title="Pick a random Attendee" onClick={() => this.pickRandom()}>
+                    <FaRandom />
+                  </button>
                 </div>
                 </div>
               </div>
