@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link, navigate } from "@reach/router";
-import { GoTrashcan } from "react-icons/go";
+import { GoTrashcan, GoListUnordered } from "react-icons/go";
 import { FaLink } from "react-icons/fa";
 import firebase from "../Firebase";
 
@@ -52,6 +52,15 @@ class MeetingList extends React.Component {
               }
             >
               <FaLink />
+            </button>
+            <button
+              className="btn btn-sm btn-outline-secondary"
+              title="Attendees List"
+              onClick={() =>
+                navigate(`/attendees/${this.props.userId}/${item.meetingId}`)
+              }
+            >
+              <GoListUnordered />
             </button>
           </section>
           <section className="pl-3 text-left align-self-center">

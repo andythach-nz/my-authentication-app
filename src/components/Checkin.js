@@ -25,6 +25,7 @@ class Checkin extends React.Component {
     ref.push({
       attendeeName: this.state.displayName,
       attendeeEmail: this.state.email,
+      star: false,
     });
     navigate(`/attendees/${this.props.userId}/${this.props.meetingId}`);
   }

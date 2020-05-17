@@ -11,6 +11,7 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import Meetings from "./components/Meetings";
 import Checkin from "./components/Checkin";
+import Attendees from "./components/Attendees";
 
 class App extends React.Component {
   constructor() {
@@ -130,9 +131,11 @@ class App extends React.Component {
             meetings={this.state.meetings}
             userId={this.state.userId}
           />
-          <Checkin
-            path="/checkin/:userId/:meetingId"
+          <Attendees
+            path="/attendees/:userId/:meetingId"
+            adminUser={this.state.userId}
           />
+          <Checkin path="/checkin/:userId/:meetingId" />
           <Register path="/register" registerUser={this.registerUser} />
         </Router>
       </div>
